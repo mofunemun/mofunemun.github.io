@@ -36,13 +36,13 @@ async function getShop(){
                     let itemImg = users.results.shop[i].photo.pc.m;
 
                     let shopBox = "<div id='" + i + "'></div>"
-                    let shopH2 = "<h2>" + itemName + "</h2>";
+                    let shopName = "<h2>" + itemName + "</h2>";
                     let shopPlace = "<p>" + itemPlace + "</p>";
                     let shopStation = "<p>" + itemStation + "</p>";
                     let shopImg = "<img src='" + itemImg + "' alt='" + itemName + "の写真です'>"
 
                     document.getElementById("answers").insertAdjacentHTML("beforeend", shopBox);
-                    document.getElementById(i).insertAdjacentHTML("beforeend", shopH2);
+                    document.getElementById(i).insertAdjacentHTML("beforeend", shopName);
                     document.getElementById(i).insertAdjacentHTML("beforeend", shopPlace);
                     document.getElementById(i).insertAdjacentHTML("beforeend", shopStation);
                     document.getElementById(i).insertAdjacentHTML("beforeend", shopImg);
