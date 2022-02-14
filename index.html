@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>近くのお店を検索します！</h1>
+  <p>位置情報を使用します。利用を許可してください。</p>
+  <div id="app">
+      <form action="#" id="range">
+        <input type="radio" name="rangeNum" id="button1" value="1">
+        <label for="button1">300m以内</label>
+        
+        <input type="radio" name="rangeNum" id="button2" value="2">
+        <label for="button2">600m以内</label>
+
+        <input type="radio" name="rangeNum" id="button3" value="3">
+        <label for="button3">900m以内</label>
+
+        <input type="radio" name="rangeNum" id="button4" value="4">
+        <label for="button4">1200m以内</label>
+
+        <input type="radio" name="rangeNum" id="button5" value="5">
+        <label for="button5">1500m以内</label>
+
+        <input type="submit" value="範囲を確定">
+      </form>
+      <p>で見つかった素敵なお店たちは...</p>
+      <div id="answers">
+
+      </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
