@@ -24,13 +24,15 @@ async function getShop(){
         let itemPlace = users.results.shop[keyNum].address;
         let itemStation = users.results.shop[keyNum].station_name;
         let itemTime = users.results.shop[keyNum].open;
-        let itemImg = users.results.shop[keyNum].photo.pc.m;
+        let itemCatch = users.results.shop[keyNum].catch;
+        let itemImg = users.results.shop[keyNum].photo.pc.l;
 
         let shopBox = "<div id='" + keyNum + "'></div>"
         let shopName = "<h2>" + itemName + "</h2>";
-        let shopPlace = "<p>" + itemPlace + "</p>";
-        let shopStation = "<p>" + itemStation + "</p>";
-        let shopTime = "<p>" + itemTime + "</p>";
+        let shopPlace = "<p>所在地：" + itemPlace + "</p>";
+        let shopStation = "<p>最寄り駅：" + itemStation + "</p>";
+        let shopTime = "<p>営業時間：" + itemTime + "</p>";
+        let shopCatch = "<p>お店の売り：" + itemCatch + "</p>";
         let shopImg = "<img src='" + itemImg + "' alt='" + itemName + "の写真です'>"
 
         document.getElementById("answers").insertAdjacentHTML("beforeend", shopBox);
@@ -38,6 +40,7 @@ async function getShop(){
         document.getElementById(keyNum).insertAdjacentHTML("beforeend", shopPlace);
         document.getElementById(keyNum).insertAdjacentHTML("beforeend", shopStation);
         document.getElementById(keyNum).insertAdjacentHTML("beforeend", shopTime);
+        document.getElementById(keyNum).insertAdjacentHTML("beforeend", shopCatch);
         document.getElementById(keyNum).insertAdjacentHTML("beforeend", shopImg);
     }
     // 位置情報エラー時の対応

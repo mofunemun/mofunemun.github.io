@@ -27,7 +27,7 @@ async function getShop(){
             let shopNum = users.results.shop.length;
             document.getElementById("shopNum").innerHTML = shopNum;
             if(shopNum === 0){
-                document.getElementById("answers").insertAdjacentHTML("beforeend", "<p style='text-align:center;'>大変申し訳ありません。検索した範囲内に店舗がありません。</p>");
+                document.getElementById("answers").insertAdjacentHTML("beforeend", "<p style='text-align:center;'>大変申し訳ありませんが店舗がありません。もう少し遠くまで歩きましょう。</p>");
             }else{
                 for (let i=0; i < shopNum; i++){
                     let itemName = users.results.shop[i].name;
@@ -39,8 +39,8 @@ async function getShop(){
                     let shopBoxText = "<div id='text" + i + "' style='display:flex; justify-content:space-between;'></div>";
                     let shopBoxCon = "<div id='con" + i + "' style='display:flex; flex-direction: column; width:60%;'></div>"
                     let shopName = "<h2>" + itemName + "</h2>";
-                    let shopPlace = "<p>" + itemPlace + "</p>";
-                    let shopStation = "<p>" + itemStation + "</p>";
+                    let shopPlace = "<p>所在地：" + itemPlace + "</p>";
+                    let shopStation = "<p>最寄り駅：" + itemStation + "</p>";
                     let shopImg = "<img src='" + itemImg + "' alt='" + itemName + "の写真です'>"
 
                     document.getElementById("answers").insertAdjacentHTML("beforeend", shopBox);
