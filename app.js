@@ -21,10 +21,9 @@ async function getShop(){
             let url = "http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=5231d4b646e96da3&lat=" + lat + "&lng=" + lng + "&range=" + range + "&format=json";
             const res = await fetch(url);
             const users = await res.json();
-            console.log(users);
 
             // 検索結果がなければメッセージを、あればそれをすべて出す
-            document.getElementById("app").insertAdjacentHTML("beforeend", "<div id='answers'></div>");
+            document.getElementById("app").insertAdjacentHTML("beforeend", "<ul id='answers'></ul>");
             let shopNum = users.results.shop.length;
             if(shopNum === 0){
                 document.getElementById("answers").insertAdjacentHTML("beforeend", "<p>大変申し訳ありません。検索した範囲内に店舗がありません。</p>");
@@ -35,22 +34,32 @@ async function getShop(){
                     let itemStation = users.results.shop[i].station_name;
                     let itemImg = users.results.shop[i].photo.pc.m;
 
-                    let linkBox = "<a href='./detail.html' id='linkDetail'></a>"
-                    let shopBox = "<div id='" + i + "'></div>"
+                    let shopBox = "<li id='" + i + "'></li>"
                     let shopName = "<h2>" + itemName + "</h2>";
                     let shopPlace = "<p>" + itemPlace + "</p>";
                     let shopStation = "<p>" + itemStation + "</p>";
                     let shopImg = "<img src='" + itemImg + "' alt='" + itemName + "の写真です'>"
 
-                    document.getElementById("answers").insertAdjacentHTML("beforeend", linkBox);
-                    document.getElementById("linkDetail").insertAdjacentHTML("beforeend", shopBox);
+                    document.getElementById("answers").insertAdjacentHTML("beforeend", shopBox);
                     document.getElementById(i).insertAdjacentHTML("beforeend", shopName);
                     document.getElementById(i).insertAdjacentHTML("beforeend", shopPlace);
                     document.getElementById(i).insertAdjacentHTML("beforeend", shopStation);
                     document.getElementById(i).insertAdjacentHTML("beforeend", shopImg);
                 }
             }
+
+            const itemList = document.getElementById("answers");
+            for(let j = 0; j < itemList.childElementCount; j++){
+                let item = itemList.children[j];
+                item.addEventListener('click', () => {
+                    sessionStorage.setItem('keyNum',j);
+                    sessionStorage.setItem('rangeNum',document.getElementById("range").rangeNum.value);
+                    window.location.href = './detail.html';
+                })
+            }
+
         }
+
     }
     // 位置情報エラー時の対応
     function Fail(error){
@@ -65,3 +74,8 @@ async function getShop(){
 }    
 
 getShop();
+
+
+
+
+
