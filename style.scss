@@ -1,0 +1,23 @@
+body{
+    width: 100%;
+}
+
+h1,form,#app>p,body>p{
+    width: 60%;
+    margin: 0 auto;
+    input{
+        padding: 5px 20px;
+        border-radius: 5%;
+        background-color: rgb(255, 188, 163);
+    }
+}
+
+#answers{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.detail{
+    width: 90%;
+    margin: 0 auto;
+}

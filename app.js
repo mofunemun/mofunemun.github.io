@@ -23,10 +23,11 @@ async function getShop(){
             const users = await res.json();
 
             // 検索結果がなければメッセージを、あればそれをすべて出す
-            document.getElementById("app").insertAdjacentHTML("beforeend", "<ul id='answers'></ul>");
+            document.getElementById("app").insertAdjacentHTML("beforeend", "<ul style='display: flex; flex-direction:column; list-style:none;' id='answers'></ul>");
             let shopNum = users.results.shop.length;
+            document.getElementById("shopNum").innerHTML = shopNum;
             if(shopNum === 0){
-                document.getElementById("answers").insertAdjacentHTML("beforeend", "<p>大変申し訳ありません。検索した範囲内に店舗がありません。</p>");
+                document.getElementById("answers").insertAdjacentHTML("beforeend", "<p style='text-align:center;'>大変申し訳ありません。検索した範囲内に店舗がありません。</p>");
             }else{
                 for (let i=0; i < shopNum; i++){
                     let itemName = users.results.shop[i].name;
@@ -34,7 +35,9 @@ async function getShop(){
                     let itemStation = users.results.shop[i].station_name;
                     let itemImg = users.results.shop[i].photo.pc.m;
 
-                    let shopBox = "<li id='" + i + "'></li>"
+                    let shopBox = "<li style='width:60%; border:solid 1px black; margin:10px auto; padding: 10px 20px;' id='" + i + "'></li>";
+                    let shopBoxText = "<div id='text" + i + "' style='display:flex; justify-content:space-between;'></div>";
+                    let shopBoxCon = "<div id='con" + i + "' style='display:flex; flex-direction: column; width:60%;'></div>"
                     let shopName = "<h2>" + itemName + "</h2>";
                     let shopPlace = "<p>" + itemPlace + "</p>";
                     let shopStation = "<p>" + itemStation + "</p>";
@@ -42,9 +45,11 @@ async function getShop(){
 
                     document.getElementById("answers").insertAdjacentHTML("beforeend", shopBox);
                     document.getElementById(i).insertAdjacentHTML("beforeend", shopName);
-                    document.getElementById(i).insertAdjacentHTML("beforeend", shopPlace);
-                    document.getElementById(i).insertAdjacentHTML("beforeend", shopStation);
-                    document.getElementById(i).insertAdjacentHTML("beforeend", shopImg);
+                    document.getElementById(i).insertAdjacentHTML("beforeend", shopBoxText);
+                    document.getElementById("text" + i).insertAdjacentHTML("beforeend", shopBoxCon);
+                    document.getElementById("con" + i).insertAdjacentHTML("beforeend", shopPlace);
+                    document.getElementById("con" + i).insertAdjacentHTML("beforeend", shopStation);
+                    document.getElementById("text" + i).insertAdjacentHTML("beforeend", shopImg);
                 }
             }
 

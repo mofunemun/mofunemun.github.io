@@ -7,18 +7,19 @@ async function getShop(){
         let lat = pos.coords.latitude;
         let lng = pos.coords.longitude;
 
-        // 検索範囲と位置情報をURLに組み込んで呼び出し
+        // 検索範囲と位置情報をURLに組み込んで呼び出し。検索範囲は前の画面から渡す
         let range = sessionStorage.getItem("rangeNum");
         let url = "http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=5231d4b646e96da3&lat=" + lat + "&lng=" + lng + "&range=" + range + "&format=json";
         const res = await fetch(url);
         const users = await res.json();
         console.log(users);
 
+        // 前回の画面で何番目の要素をクリックしたかを受け取る
         let keyNum = sessionStorage.getItem("keyNum");
         console.group(keyNum);
         document.getElementById("app").insertAdjacentHTML("beforeend", "<div id='answers'></div>");
 
-        // 検索結果がなければメッセージを、あればそれをすべて出す
+        //指定されば番号の情報を表示する
         let itemName = users.results.shop[keyNum].name;
         let itemPlace = users.results.shop[keyNum].address;
         let itemStation = users.results.shop[keyNum].station_name;
